@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { FocusCards } from "@/components/ui/focus-cards";
 
 interface CardProps {
   rank: string;
@@ -10,7 +11,7 @@ interface CardProps {
 export default function Card({ rank, suit, isFaceDown = false }: CardProps) {
   // This should contain ranks, not suits
   const rankIcons: { [key: string]: string } = {
-    "1": "/image/cards/a.png",
+    "a": "/image/cards/a.png",
     "2": "/image/cards/2.png",
     "3": "/image/cards/3.png",
     "4": "/image/cards/4.png",
@@ -36,8 +37,7 @@ export default function Card({ rank, suit, isFaceDown = false }: CardProps) {
         <Image src="/image/cards/back.png" alt="Back of Card" width={60} height={80} className="pointer-block" draggable="false"/>
       ) : (
         <>
-          <span className="text-xl font-bold">{rank.toUpperCase()}</span>
-          <Image src={rankIcons[rank.toLowerCase()]} alt={`${rank} of ${suit}`} width={60} height={80} />
+          <Image src={rankIcons[rank.toLowerCase()]} alt={`${rank} of ${suit}`} width={60} height={60} />
         </>
       )}
     </motion.div>
