@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { GameProvider } from "@/context/GameContext";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
-import { Inter } from '@next/font/google';
-
-
-import "./globals.css";
-
-const geistSans = Inter({
-  variable: "--font-geist-sans",
+const sansserif = Poppins({
+  weight: ["100", "300", "200", "400", "700", "900"],
   subsets: ["latin"],
 });
-
 
 export const metadata: Metadata = {
   title: "card game counting",
@@ -26,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body   className={`${geistSans.variable}  antialiased`} >
+      <body className={` ${sansserif.className}  antialiased`}>
         <GameProvider>
           <AuroraBackground>
             {children}
