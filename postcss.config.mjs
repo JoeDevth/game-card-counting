@@ -1,4 +1,5 @@
-import tailwindcss from "@tailwindcss/postcss7-compat"; 
+// postcss.config.mjs
+import tailwindcss from "@tailwindcss/postcss7-compat";
 import autoprefixer from "autoprefixer";
 
 export default {
