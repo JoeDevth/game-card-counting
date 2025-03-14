@@ -1,5 +1,4 @@
 // Import the necessary utilities using import
-import { flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
 
 /** @type {import('tailwindcss').Config} */
 export default {
