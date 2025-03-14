@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FocusCards } from "@/components/ui/focus-cards";
 
 interface CardProps {
   rank: string;
   suit: string;
   isFaceDown?: boolean;
+  onClick?: () => void;
 }
 
-export default function Card({ rank, suit, isFaceDown = false }: CardProps) {
-  // This should contain ranks, not suits
+export default function Card({ rank, suit, isFaceDown = false, onClick }: CardProps) {
+  // Map of rank to card image paths
   const rankIcons: { [key: string]: string } = {
     "a": "/image/cards/a.png",
     "2": "/image/cards/2.png",
@@ -26,19 +26,31 @@ export default function Card({ rank, suit, isFaceDown = false }: CardProps) {
     "k": "/image/cards/k.png"  
   };
   
-
   return (
     <motion.div 
-      className="relative w-20 h-28 rounded-lg shadow-lg border bg-white flex flex-col items-center justify-center"
+      className="relative w-16 h-24 sm:w-20 sm:h-28 rounded-lg shadow-lg border bg-white flex flex-col items-center justify-center"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
+      onClick={onClick}
     >
       {isFaceDown ? (
-        <Image src="/image/cards/back.png" alt="Back of Card" width={60} height={80} className="pointer-block" draggable="false"/>
+        <Image 
+          src="/image/cards/back.png" 
+          alt="Back of Card" 
+          width={60} 
+          height={80} 
+          className="w-[60px] h-[80px] sm:w-[60px] sm:h-[80px] pointer-events-none" 
+          draggable="false"
+        />
       ) : (
-        <>
-          <Image src={rankIcons[rank.toLowerCase()]} alt={`${rank} of ${suit}`} width={60} height={60} />
-        </>
+        <Image 
+          src={rankIcons[rank.toLowerCase()] || "/image/cards/back.png"} 
+          alt={`${rank} of ${suit}`} 
+          width={60} 
+          height={80} 
+          className="w-[60px] h-[80px] sm:w-[60px] sm:h-[80px] pointer-events-none"
+          draggable="false"
+        />
       )}
     </motion.div>
   );

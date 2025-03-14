@@ -3,8 +3,7 @@ import  GamePage  from '../feature'
 
 const page = () => {
   return (
-    <div>
-      <GamePage /></div>
+      <GamePage />
   )
 }
 
